@@ -1,24 +1,29 @@
 # sx-drag-demo
+一个低代码平台的前端部分，靠拖拉拽生成页面。
+## 功能点
+这是本项目具有的功能点。
+1. 编辑器
+2. 自定义组件
+3. 拖拽
+4. 删除组件、调整图层层级
+5. 放大缩小
+6. 撤消、重做
+7. 组件属性设置
+8. 吸附
+9. 预览、保存代码
+10. 绑定事件
+11. 绑定动画
+12. 导入 PSD
+13. 拖拽旋转
+14. 复制粘贴剪切
+15. 数据交互
+16. 发布
+17. 多个组件的组合和拆分
+18. 文本组件
+19. 矩形组件
+20. 锁定组件
+21. 快捷键
+22. 网格线
+23. 编辑器快照的另一种实现方式
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
