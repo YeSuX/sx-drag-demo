@@ -1,5 +1,5 @@
 <template>
-  <div class="componentListWrapper">
+  <div @dragstart="handleDragStart" class="componentListWrapper">
     <div
       v-for="(item, index) in componentList"
       :key="index"
@@ -21,6 +21,12 @@ export default {
     return {
       componentList,
     };
+  },
+  methods: {
+    handleDragStart(e) {
+      //拖拽传输数据
+      e.dataTransfer.setData("index", e.target.dataset.index);
+    },
   },
 };
 </script>

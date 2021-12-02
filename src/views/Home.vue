@@ -5,7 +5,9 @@
       <section class="left">
         <ComponentList />
       </section>
-      <section class="center">中间画布</section>
+      <section @drop="handleDrop" @dragover="handleDragOver" class="center">
+        <Editor />
+      </section>
       <section class="right">
         <el-tabs class="tabs" v-model="activeName">
           <el-tab-pane label="属性" name="attr">
@@ -25,14 +27,47 @@
 <script>
 import Toolbar from "../components/Toolbar.vue";
 import ComponentList from "../components/ComponentList.vue";
+//左侧组件数据
+import componentList from "../custom-components/component-list";
+import Editor from "../components/Editor/index.vue";
+import { deepCopy } from "../utils/utils";
+import generateID from "@/utils/generateID";
 
 export default {
   name: "Home",
-  components: { Toolbar, ComponentList },
+  components: { Toolbar, ComponentList, Editor },
   data() {
     return {
       activeName: "attr",
     };
+  },
+  methods: {
+    handleDragOver(e) {
+      //取消该事件
+      e.preventDefault();
+      //dropEffect 会根据用户的请求的行为进行初始化。
+      // copy;
+      // 在新位置生成源项的副本;
+      // move;
+      // 将项目移动到新位置;
+      // link;
+      // 在新位置建立源项目的链接;
+      e.dataTransfer.dropEffect = "copy";
+    },
+    handleDrop(e) {
+      //drop 在e.dataTransfer.dropEffect = "..."后出发
+      e.preventDefault();
+      //防止调用相同事件的传播。
+      e.stopPropagation();
+      //拖拽接收数据,index为对应组件的索引值
+      const index = e.dataTransfer.getData("index");
+      if (index) {
+        const component = deepCopy(componentList[index]);
+        component.id = generateID();
+        this.$store.commit("addComponent", { component });
+        console.log("component", component);
+      }
+    },
   },
 };
 </script>
