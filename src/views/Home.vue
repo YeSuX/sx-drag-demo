@@ -57,8 +57,10 @@ export default {
     handleDrop(e) {
       //drop 在e.dataTransfer.dropEffect = "..."后出发
       e.preventDefault();
+      
       //防止调用相同事件的传播。
       e.stopPropagation();
+
       //拖拽接收数据,index为对应组件的索引值
       const index = e.dataTransfer.getData("index");
       if (index) {
